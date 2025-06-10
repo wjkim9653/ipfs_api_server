@@ -19,13 +19,23 @@ wget https://dist.ipfs.tech/kubo/v0.29.0/kubo_v0.29.0_linux-amd64.tar.gz
 tar -xvzf kubo_v0.29.0_linux-amd64.tar.gz
 cd kubo && sudo mv ipfs /usr/local/bin/ && cd ..
 
+# 현재 실행 중인 프로세스 종료 (혹시 남아있다면)
+pkill -f "ipfs daemon"
+pkill -f "python app.py"
+
 # IPFS 초기화 및 실행
 ipfs init
-nohup ipfs daemon > ipfs.log 2>&1 &
 ```
-
 ```sh
 export API_KEY="mysecretkey"
 export IPFS_API_URL="http://127.0.0.1:5001/api/v0"
 python app.py
+```
+```sh
+nohup ipfs daemon > ipfs.log 2>&1 &
+nohup python app.py > app.log 2>&1 &
+```
+```sh
+# 프로세스 확인
+ps aux | grep -E "(ipfs|python)"
 ```
