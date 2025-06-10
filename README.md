@@ -11,7 +11,7 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 ```sh
-pip install -r requirements.txt
+pip install Flask requests
 ```
 ```sh
 # 설치
